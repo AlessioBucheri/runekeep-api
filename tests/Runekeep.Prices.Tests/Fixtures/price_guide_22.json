@@ -1,0 +1,6 @@
+{"version":1,"createdAt":"2026-10-09T02:45:56+0200","priceGuides":[
+{"idProduct":845712,"idCategory":1655,"avg":0.04,"low":0.02,"trend":0.04,"avg1":0.02,"avg7":0.04,"avg30":0.04,"avg-foil":0.18,"low-foil":0.02,"trend-foil":0.17,"avg1-foil":0.2,"avg7-foil":0.15,"avg30-foil":0.17},
+{"idProduct":845721,"idCategory":1657,"avg":181.35,"low":145,"trend":186.91,"avg1":null,"avg7":null,"avg30":null,"avg-foil":null,"low-foil":null,"trend-foil":0,"avg1-foil":null,"avg7-foil":null,"avg30-foil":null},
+{"idProduct":847156,"idCategory":1655,"avg":44.1,"low":36.99,"trend":46.41,"avg1":40,"avg7":45.2,"avg30":45.774,"avg-foil":null,"low-foil":null,"trend-foil":null,"avg1-foil":null,"avg7-foil":null,"avg30-foil":null},
+{"idProduct":898120,"idCategory":1655,"avg":0.12,"low":0.02,"trend":0.11,"avg1":null,"avg7":null,"avg30":null,"avg-foil":0.5,"low-foil":0.3,"trend-foil":0.45,"avg1-foil":null,"avg7-foil":null,"avg30-foil":null}
+]}

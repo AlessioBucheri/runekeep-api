@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Description>Daily job: downloads Riftbound prices from Cardmarket and writes prices.json for the app.</Description>
+    <RootNamespace>Runekeep.PriceJob</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Runekeep.Prices\Runekeep.Prices.csproj" />
+  </ItemGroup>
+
+</Project>

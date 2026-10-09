@@ -1,0 +1,55 @@
+name: Prezzi giornalieri
+
+# Downloads the Cardmarket price guide every day and publishes prices.json on GitHub Pages.
+# Cardmarket regenerates its files around 01:00 UTC; running at 03:41 UTC leaves margin.
+on:
+  schedule:
+    - cron: '41 3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['src/**', '.github/workflows/prices.yml']
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet restore
+      - run: dotnet build --no-restore --configuration Release
+      - run: dotnet test --no-build --configuration Release
+      # Fails (and publishes nothing) if Cardmarket is unreachable: yesterday's file stays online.
+      - name: Scarica i prezzi e crea prices.json
+        run: dotnet run --no-build --configuration Release --project src/Runekeep.PriceJob -- site
+      - name: Pagina indice
+        run: |
+          cat > site/index.html <<'EOF'
+          <!doctype html><meta charset="utf-8"><title>Runekeep · prezzi</title>
+          <p>Prezzi Riftbound per l'app Runekeep, dal price guide pubblico di Cardmarket.
+          File: <a href="prices.json">prices.json</a></p>
+          EOF
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
