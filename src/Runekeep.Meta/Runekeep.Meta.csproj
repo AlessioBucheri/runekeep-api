@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Reads the official Riftbound "Top Decks" articles and turns their decklists into the snapshot the app reads.</Description>
+    <RootNamespace>Runekeep.Meta</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Runekeep.Meta.Tests" />
+  </ItemGroup>
+
+</Project>

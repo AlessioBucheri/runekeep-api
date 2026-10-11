@@ -1,6 +1,7 @@
 name: Prezzi giornalieri
 
-# Downloads the Cardmarket price guide every day and publishes prices.json on GitHub Pages.
+# Downloads the Cardmarket price guide every day and publishes prices.json on GitHub Pages,
+# together with meta-decks.json (decklists of the official "Top Decks" articles).
 # Cardmarket regenerates its files around 01:00 UTC; running at 03:41 UTC leaves margin.
 on:
   schedule:
@@ -33,6 +34,10 @@ jobs:
       # Fails (and publishes nothing) if Cardmarket is unreachable: yesterday's file stays online.
       - name: Scarica i prezzi e crea prices.json
         run: dotnet run --no-build --configuration Release --project src/Runekeep.PriceJob -- site
+      # Optional: if Riot's site does not answer, the prices are published anyway and the app keeps its decklists.
+      - name: Raccogli le decklist dei tornei e crea meta-decks.json
+        continue-on-error: true
+        run: dotnet run --no-build --configuration Release --project src/Runekeep.MetaJob -- site
       # Presentation page and privacy policy (website/) published next to prices.json.
       - name: Sito di presentazione
         run: cp -r website/. site/
