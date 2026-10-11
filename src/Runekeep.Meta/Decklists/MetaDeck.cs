@@ -23,3 +23,9 @@ public sealed record MetaDeck(
     [property: JsonPropertyName("battlefields")] IReadOnlyList<CardCount> Battlefields,
     [property: JsonPropertyName("runes")] IReadOnlyList<CardCount> Runes,
     [property: JsonPropertyName("sideboard")] IReadOnlyList<CardCount> Sideboard);
+
+/// <summary>Players of one legend at the event: on Day 1 and still in on Day 2. The name is as printed ("Master Yi, WB").</summary>
+public sealed record LegendAttendance(
+    [property: JsonPropertyName("legend")] string Legend,
+    [property: JsonPropertyName("day1")] int Day1,
+    [property: JsonPropertyName("day2")] int Day2);
