@@ -15,7 +15,8 @@ public static class MetaSnapshotBuilder
                 a.Page.Title.Trim(),
                 a.Page.PublishedAt,
                 a.Url.ToString(),
-                DecklistParser.Parse(a.Page.BodyHtml)))
+                DecklistParser.Parse(a.Page.BodyHtml),
+                AttendanceParser.Parse(a.Page.BodyHtml)))
             .Where(e => e.Decks.Count > 0)
             .OrderByDescending(e => e.Date)
             .ToList();

@@ -25,7 +25,7 @@ try
 
     var path = await MetaSnapshotWriter.WriteAsync(snapshot, outputDirectory);
     Console.WriteLine($"Wrote {decks} decklists from {snapshot.Events.Count} events to {path}");
-    foreach (var e in snapshot.Events) Console.WriteLine($"  {e.Date:yyyy-MM-dd} {e.Name}: {e.Decks.Count}");
+    foreach (var e in snapshot.Events) Console.WriteLine($"  {e.Date:yyyy-MM-dd} {e.Name}: {e.Decks.Count} decks, {e.Field.Count} legends in the field");
     return 0;
 }
 catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or FormatException or System.Text.Json.JsonException or System.Xml.XmlException)

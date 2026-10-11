@@ -79,14 +79,16 @@ Le chiavi di `prices` sono gli `idProduct` di Cardmarket, che sono anche gli id 
           "legend": "Rengar, Pridestalker", "champion": "Rengar, Trophy Hunter",
           "main": [{ "n": 3, "name": "Inferna" }], "battlefields": [], "runes": [], "sideboard": []
         }
-      ]
+      ],
+      "field": [{ "legend": "Irelia", "day1": 193, "day2": 48 }]
     }
   ]
 }
 ```
 
 Le carte restano col nome stampato: è l'app che le collega al suo catalogo. Negli articoli più vecchi manca la
-leggenda (`legend` assente) e l'app la ricava dal campione. Il job scarica la sitemap e pochi articoli al giorno,
+leggenda (`legend` assente) e l'app la ricava dal campione. `field` è la tabella delle presenze
+(giocatori per leggenda al Day 1 e al Day 2), con i nomi come scritti nell'articolo ("Master Yi, WB"). Il job scarica la sitemap e pochi articoli al giorno,
 uno alla volta; se il sito Riot non risponde i prezzi vengono pubblicati lo stesso.
 
 ## Comandi

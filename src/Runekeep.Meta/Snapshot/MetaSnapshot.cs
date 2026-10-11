@@ -13,11 +13,12 @@ public sealed record MetaSnapshot(
     public const int CurrentVersion = 1;
 }
 
-/// <summary>One "Top Decks" article.</summary>
+/// <summary>One "Top Decks" article: its decklists and, when published, how many played each legend.</summary>
 public sealed record MetaEvent(
     [property: JsonPropertyName("id")] string Id,
     [property: JsonPropertyName("name")] string Name,
     [property: JsonPropertyName("title")] string Title,
     [property: JsonPropertyName("date")] DateTimeOffset? Date,
     [property: JsonPropertyName("url")] string Url,
-    [property: JsonPropertyName("decks")] IReadOnlyList<MetaDeck> Decks);
+    [property: JsonPropertyName("decks")] IReadOnlyList<MetaDeck> Decks,
+    [property: JsonPropertyName("field")] IReadOnlyList<LegendAttendance> Field);
