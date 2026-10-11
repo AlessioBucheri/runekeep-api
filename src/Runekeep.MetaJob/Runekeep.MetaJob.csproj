@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Description>Daily job: collects the decklists of the official Riftbound "Top Decks" articles and writes meta-decks.json for the app.</Description>
+    <RootNamespace>Runekeep.MetaJob</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Runekeep.Meta\Runekeep.Meta.csproj" />
+  </ItemGroup>
+
+</Project>
