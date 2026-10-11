@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['src/**', '.github/workflows/prices.yml']
+    paths: ['src/**', 'website/**', '.github/workflows/prices.yml']
 
 permissions:
   contents: read
@@ -33,13 +33,9 @@ jobs:
       # Fails (and publishes nothing) if Cardmarket is unreachable: yesterday's file stays online.
       - name: Scarica i prezzi e crea prices.json
         run: dotnet run --no-build --configuration Release --project src/Runekeep.PriceJob -- site
-      - name: Pagina indice
-        run: |
-          cat > site/index.html <<'EOF'
-          <!doctype html><meta charset="utf-8"><title>Runekeep · prezzi</title>
-          <p>Prezzi Riftbound per l'app Runekeep, dal price guide pubblico di Cardmarket.
-          File: <a href="prices.json">prices.json</a></p>
-          EOF
+      # Presentation page and privacy policy (website/) published next to prices.json.
+      - name: Sito di presentazione
+        run: cp -r website/. site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
