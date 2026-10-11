@@ -7,6 +7,11 @@ Per ora fa una cosa sola: ogni giorno scarica il price guide pubblico di Cardmar
 
 **URL pubblico:** https://alessiobucheri.github.io/runekeep-api/prices.json
 
+Lo stesso sito pubblica anche la pagina di presentazione dell'app e la privacy policy (cartella `website/`):
+
+- https://alessiobucheri.github.io/runekeep-api/ — presentazione con le schermate (URL del prodotto per Riot)
+- https://alessiobucheri.github.io/runekeep-api/privacy.html — privacy policy (richiesta dal Play Store)
+
 ## Come funziona
 
 ```
