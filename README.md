@@ -5,7 +5,8 @@ Backend di [Runekeep](https://github.com/AlessioBucheri/runekeep-app), in **C# /
 Ogni giorno pubblica due file che l'app legge all'avvio (con cache offline):
 
 - `prices.json`: il price guide pubblico di Cardmarket per Riftbound;
-- `meta-decks.json`: le decklist dei tornei pubblicate da Riot negli articoli «Top Decks» di playriftbound.com.
+- `meta-decks.json`: le decklist dei tornei pubblicate da Riot negli articoli «Top Decks» di playriftbound.com;
+- `news.json`: le ultime 40 notizie ufficiali (titolo, data, categoria, link), per le notifiche dell'app.
 
 **URL pubblici:** https://alessiobucheri.github.io/runekeep-api/prices.json ·
 https://alessiobucheri.github.io/runekeep-api/meta-decks.json
@@ -35,7 +36,7 @@ Cardmarket (file pubblici, game id 22)          GitHub Actions, ogni giorno alle
 | `src/Runekeep.PriceJob`    | Console: scarica, trasforma, scrive `prices.json`                        |
 | `tests/Runekeep.Prices.Tests` | Test xUnit con copie ridotte dei file reali                           |
 | `src/Runekeep.Meta`        | Libreria: trova gli articoli «Top Decks» nella sitemap Riot e ne legge le decklist |
-| `src/Runekeep.MetaJob`     | Console: scarica gli articoli e scrive `meta-decks.json`                 |
+| `src/Runekeep.MetaJob`     | Console: scarica notizie e articoli, scrive `news.json` e `meta-decks.json` |
 | `tests/Runekeep.Meta.Tests` | Test xUnit sui formati degli articoli (vecchio e attuale)               |
 
 La logica sta tutta nella libreria: quando servirà un'API ASP.NET vera (account, sincronizzazione), la userà
