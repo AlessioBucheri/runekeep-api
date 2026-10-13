@@ -1,3 +1,4 @@
+using Runekeep.Meta.News;
 using Runekeep.Meta.Riot;
 using Runekeep.Meta.Snapshot;
 
@@ -7,6 +8,21 @@ var outputDirectory = args.Length > 0 ? args[0] : "site";
 using var http = new HttpClient { Timeout = TimeSpan.FromMinutes(1) };
 http.DefaultRequestHeaders.UserAgent.ParseAdd("Runekeep-MetaJob/1.0 (+https://github.com/AlessioBucheri/runekeep-api)");
 var client = new RiotNewsClient(http);
+
+// News first and on its own: if it fails, the decklists are still published (and vice versa).
+try
+{
+    var news = await client.GetNewsAsync();
+    if (news.Count == 0) throw new FormatException("No news found: refusing to publish an empty file.");
+    var path = await NewsSnapshotWriter.WriteAsync(
+        new NewsSnapshot(NewsSnapshot.CurrentVersion, "playriftbound.com", DateTimeOffset.UtcNow, news),
+        outputDirectory);
+    Console.WriteLine($"Wrote {news.Count} news to {path}");
+}
+catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or FormatException or System.Text.Json.JsonException)
+{
+    Console.Error.WriteLine($"News failed: {ex.Message}");
+}
 
 try
 {
